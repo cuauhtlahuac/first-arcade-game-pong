@@ -1,2 +1,1 @@
-"# first-arcade-game-pong"  git init git add README.md git commit -m "first commit" git remote add origin https://github.com/cuauhtlahuac/first-arcade-game-pong.git git push -u origin master
-"# first-arcade-game-pong" 
+At the end of this short course you'll have programmed your first game. You'll learn gameplay development fundamentals by really doing it – writing and running real code on your own machine. 
