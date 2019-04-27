@@ -22,6 +22,11 @@ Use in html section, inside will be all graphics
    </canvas> 
 ```
 
+### playing with canvas
+
+the first argument fo fillRect is the left pos, second the top, third the right, four the bottom.
+if a rectangle are over on others, the the last writing shows on top. Draw order is very important.
+
 
 
 
