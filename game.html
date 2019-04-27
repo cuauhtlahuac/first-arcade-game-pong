@@ -8,10 +8,13 @@
     window.onload = function() {
       canvas = document.getElementById("gameCanvas");
       canvasContext = canvas.getContext("2d");
-      drawEverything();
+      setInterval(() => {
+        drawEverything();
+      }, 10);
     };
+    //drawEverything();
     function drawEverything() {
-      ballX = ballX + 10;
+      ballX = ballX + 1;
       canvasContext.fillStyle = "black";
       canvasContext.fillRect(0, 0, canvas.width, canvas.height);
       canvasContext.fillStyle = "red";
