@@ -8,9 +8,10 @@
     window.onload = function() {
       canvas = document.getElementById("gameCanvas");
       canvasContext = canvas.getContext("2d");
+      framesPerSecond = 30;
       setInterval(() => {
         drawEverything();
-      }, 10);
+      }, 1000 / framesPerSecond);
     };
     //drawEverything();
     function drawEverything() {
@@ -18,7 +19,7 @@
       canvasContext.fillStyle = "black";
       canvasContext.fillRect(0, 0, canvas.width, canvas.height);
       canvasContext.fillStyle = "red";
-      canvasContext.fillRect(ballX, ballX, ballX, ballX);
+      canvasContext.fillRect(ballX, ballX, 10, 10);
       canvasContext.fillStyle = "lime";
       canvasContext.fillRect(canvas.width / 2, canvas.height / 2, 60, 10);
     }
