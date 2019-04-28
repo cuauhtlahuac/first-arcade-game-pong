@@ -10,12 +10,17 @@
       canvasContext = canvas.getContext("2d");
       framesPerSecond = 30;
       setInterval(() => {
-        drawEverything();
+        callBoth();
       }, 1000 / framesPerSecond);
     };
-    //drawEverything();
-    function drawEverything() {
-      ballX = ballX + 1;
+    function callBoth() {
+      moveEveryThing();
+      drawEveryThing();
+    }
+    function moveEveryThing() {
+      ballX = ballX + 5;
+    }
+    function drawEveryThing() {
       canvasContext.fillStyle = "black";
       canvasContext.fillRect(0, 0, canvas.width, canvas.height);
       canvasContext.fillStyle = "red";
