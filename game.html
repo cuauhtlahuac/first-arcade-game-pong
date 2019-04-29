@@ -36,6 +36,11 @@
       setInterval(() => {
         callBoth();
       }, 1000 / framesPerSecond);
+
+      canvas.addEventListener("mousemove", evt => {
+        var mousePos = calculateMousePos(evt);
+        paddleLeftY = mousePos.y;
+      });
     };
     function callBoth() {
       moveEveryThing();
