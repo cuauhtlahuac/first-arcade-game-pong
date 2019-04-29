@@ -5,7 +5,9 @@
     var canvas;
     var canvasContext;
     var ballX = 50;
+    var ballY = 50;
     var ballSpeedX = 15;
+    var ballSpeedY = 4;
     window.onload = function() {
       canvas = document.getElementById("gameCanvas");
       canvasContext = canvas.getContext("2d");
@@ -20,11 +22,18 @@
     }
     function moveEveryThing() {
       ballX = ballX + ballSpeedX;
-      console.log(ballX);
+      console.log({ballX});
       if (ballX > canvas.width || ballX < 0) {
         //The javascript multiply the var number like
         // -(5) or -(-5)
         ballSpeedX = -ballSpeedX;
+      }
+      ballY = ballY + ballSpeedY;
+      console.log({ballY});
+      if (ballY > canvas.height || ballY < 0) {
+        //The javascript multiply the var number like
+        // -(5) or -(-5)
+        ballSpeedY = -ballSpeedY;
       }
     }
     function rectangle(leftX, topX, width, height, color) {
@@ -47,7 +56,7 @@
       // this is left player paddle
       rectangle(0, 240, 10, 80, "white");
       // draw circle
-      circle(ballX, 100, 10, "white");
+      circle(ballX, ballY, 10, "white");
     }
   </script>
 </html>
