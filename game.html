@@ -32,6 +32,12 @@
       //(XInitPos,YInitPos,width eje x, higth eje y)
       canvasContext.fillRect(leftX, topX, width, height);
     }
+    function circle(centerX, centerY, size, color) {
+      canvasContext.fillStyle = color;
+      canvasContext.beginPath();
+      canvasContext.arc(centerX, centerY, size, 0, Math.PI * 2, true);
+      canvasContext.fill();
+    }
 
     function drawEveryThing() {
       // next line blanks out the screen with black
@@ -40,20 +46,8 @@
       rectangle(ballX, 20, 10, 10, "red");
       // this is left player paddle
       rectangle(0, 240, 10, 80, "white");
-      // next lines draws the ball
-      canvasContext.fillStyle = "pink";
-      // here we initialize the new path
-      canvasContext.beginPath();
-      // arc initialice the path, the core of the circle, 
-      // the first arument refears to the center position in X,
-      // the second argument refears to the center position in y.
-      // the therd arg refears to the size of the path, in this case the radio
-      // the 4 and 5 args refears to sections, like piece of pizza, check ./circles.PNG
-      // if you only write Math.PI, it only draw's the middle,
-      // last argument refears to direction of drawing, as the clockwise direction or not.
-      canvasContext.arc(ballX,100,10,0,Math.PI * 2, true)
-      // here finished the new path draw
-      canvasContext.fill();
+      // draw circle
+      circle(ballX, 100, 10, "white");
     }
   </script>
 </html>
