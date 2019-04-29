@@ -27,7 +27,13 @@ Use in html section, inside will be all graphics
 the first argument fo fillRect is the left pos, second the top, third the right, four the bottom.
 if a rectangle are over on others, the the last writing shows on top. Draw order is very important.
 
+### Movement and Time
 
+create a function to group all draw cod.
+Using a variable to vary shape Draw Position.
+Change the rectangle to circle like a ball.
+
+### Pt8 Ball Reset and Collision
 
 
 
