@@ -9,6 +9,7 @@
     var ballSpeedY = 4;
 
     var paddleLeftY = 250;
+    var paddleRightY = 100;
     const PADDLE_HEIGHT = 100;
     // will call this function every time the mouse moves
     function calculateMousePos(evt) {
@@ -38,7 +39,10 @@
 
       canvas.addEventListener("mousemove", evt => {
         var mousePos = calculateMousePos(evt);
-        paddleLeftY = mousePos.y - PADDLE_HEIGHT / 2;
+        if (mousePos.x < canvas.width / 2) {
+          paddleLeftY = mousePos.y - PADDLE_HEIGHT / 2;
+        } else if (mousePos.x > canvas.width / 2)
+          paddleRightY = mousePos.y - PADDLE_HEIGHT / 2;
       });
     };
 
@@ -57,7 +61,11 @@
     function moveEveryThing() {
       ballX = ballX + ballSpeedX;
       if (ballX > canvas.width) {
-        ballSpeedX = -ballSpeedX;
+        if (ballY > paddleRightY && ballY < paddleRightY + PADDLE_HEIGHT) {
+          ballSpeedX = -ballSpeedX;
+        } else {
+          ballReset();
+        }
       }
       if (ballX < 0) {
         if (ballY > paddleLeftY && ballY < paddleLeftY + PADDLE_HEIGHT) {
@@ -95,6 +103,8 @@
       // this is left player paddle
       // here gonna use the new mouse event paddle pos
       rectangle(0, paddleLeftY, 10, PADDLE_HEIGHT, "white");
+      // Right Paddle
+      rectangle(canvas.width - 10, paddleRightY, 10, PADDLE_HEIGHT, "white");
       // draw circle
       circle(ballX, ballY, 10, "white");
     }
