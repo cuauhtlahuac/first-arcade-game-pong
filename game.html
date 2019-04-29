@@ -1,5 +1,4 @@
 <html>
-  Game
   <canvas id="gameCanvas" width="800" height="600"> </canvas>
   <script>
     var canvas;
@@ -48,14 +47,14 @@
     }
     function moveEveryThing() {
       ballX = ballX + ballSpeedX;
-      console.log({ ballX });
+      // console.log({ ballX });
       if (ballX > canvas.width || ballX < 0) {
         //The javascript multiply the var number like
         // -(5) or -(-5)
         ballSpeedX = -ballSpeedX;
       }
       ballY = ballY + ballSpeedY;
-      console.log({ ballY });
+      // console.log({ ballY });
       if (ballY > canvas.height || ballY < 0) {
         //The javascript multiply the var number like
         // -(5) or -(-5)
@@ -80,7 +79,8 @@
       // this is left draws red square
       rectangle(ballX, 20, 10, 10, "red");
       // this is left player paddle
-      rectangle(0, 240, 10, 80, "white");
+      // here gonna use the new mouse event paddle pos
+      rectangle(0, paddleLeftY, 10, 80, "white");
       // draw circle
       circle(ballX, ballY, 10, "white");
     }
