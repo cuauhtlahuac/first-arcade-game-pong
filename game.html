@@ -11,7 +11,24 @@
 
     var paddleLeftY = 250;
     const PADDLE_HEIGHT = 100;
-    
+    // will call this function every time the mouse moves
+    function calculateMousePos(evt) {
+      // every time the function is call it recive the event '(evt)'
+
+      // This get the black rectangle area
+      var rect = canvas.getBoundingClientRect();
+      var root = document.documentElement;
+      console.log({ root });
+
+      // the lines below return the muose position, in x and y axis.
+      var mouseX = evt.clientX - rect.left - root.scrollLeft;
+      var mouseY = evt.clientY - rect.top - root.scrollTop;
+      return {
+        x: mouseX,
+        y: mouseY
+      };
+    }
+
     window.onload = function() {
       canvas = document.getElementById("gameCanvas");
       canvasContext = canvas.getContext("2d");
@@ -26,14 +43,14 @@
     }
     function moveEveryThing() {
       ballX = ballX + ballSpeedX;
-      console.log({ballX});
+      console.log({ ballX });
       if (ballX > canvas.width || ballX < 0) {
         //The javascript multiply the var number like
         // -(5) or -(-5)
         ballSpeedX = -ballSpeedX;
       }
       ballY = ballY + ballSpeedY;
-      console.log({ballY});
+      console.log({ ballY });
       if (ballY > canvas.height || ballY < 0) {
         //The javascript multiply the var number like
         // -(5) or -(-5)
