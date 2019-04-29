@@ -38,7 +38,7 @@
 
       canvas.addEventListener("mousemove", evt => {
         var mousePos = calculateMousePos(evt);
-        paddleLeftY = mousePos.y;
+        paddleLeftY = mousePos.y - PADDLE_HEIGHT / 2;
       });
     };
     function callBoth() {
@@ -80,7 +80,7 @@
       rectangle(ballX, 20, 10, 10, "red");
       // this is left player paddle
       // here gonna use the new mouse event paddle pos
-      rectangle(0, paddleLeftY, 10, 80, "white");
+      rectangle(0, paddleLeftY, 10, PADDLE_HEIGHT, "white");
       // draw circle
       circle(ballX, ballY, 10, "white");
     }
