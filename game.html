@@ -43,6 +43,7 @@
     };
 
     function ballReset() {
+      ballSpeedX = -ballSpeedX;
       // center the ball
       ballX = canvas.width / 2;
       ballY = canvas.height / 2;
@@ -55,13 +56,17 @@
 
     function moveEveryThing() {
       ballX = ballX + ballSpeedX;
-      // console.log({ ballX });
-      if (ballX > canvas.width || ballX < 0) {
-        //The javascript multiply the var number like
-        // -(5) or -(-5)
-        // ballSpeedX = -ballSpeedX;
-        ballReset();
+      if (ballX > canvas.width) {
+        ballSpeedX = -ballSpeedX;
       }
+      if (ballX < 0) {
+        if (ballY > paddleLeftY && ballY < paddleLeftY + PADDLE_HEIGHT) {
+          ballSpeedX = -ballSpeedX;
+        } else {
+          ballReset();
+        }
+      }
+
       ballY = ballY + ballSpeedY;
       // console.log({ ballY });
       if (ballY > canvas.height || ballY < 0) {
