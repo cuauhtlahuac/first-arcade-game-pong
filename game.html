@@ -10,6 +10,8 @@
 
     var paddleLeftY = 250;
     var paddleRightY = 100;
+    // grosor del palito
+    const PADDLE_THICKNESS = 10;
     const PADDLE_HEIGHT = 100;
     // will call this function every time the mouse moves
     function calculateMousePos(evt) {
@@ -102,9 +104,9 @@
       rectangle(ballX, 20, 10, 10, "red");
       // this is left player paddle
       // here gonna use the new mouse event paddle pos
-      rectangle(0, paddleLeftY, 10, PADDLE_HEIGHT, "white");
+      rectangle(0, paddleLeftY, PADDLE_THICKNESS, PADDLE_HEIGHT, "white");
       // Right Paddle
-      rectangle(canvas.width - 10, paddleRightY, 10, PADDLE_HEIGHT, "white");
+      rectangle(canvas.width - PADDLE_THICKNESS, paddleRightY, PADDLE_THICKNESS, PADDLE_HEIGHT, "white");
       // draw circle
       circle(ballX, ballY, 10, "white");
     }
