@@ -35,5 +35,7 @@ Change the rectangle to circle like a ball.
 
 ### Pt8 Ball Reset and Collision
 
+### Pt9 Paddle AI and Scoring
+
 
 
