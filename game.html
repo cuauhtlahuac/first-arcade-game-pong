@@ -10,6 +10,7 @@
 
     let playerRightScore = 0;
     let playerLeftScore = 0;
+    const WINNING_SCORE = 3;
 
     // This referes to the top pf the paddle
     var paddleLeftY = 250;
@@ -52,6 +53,14 @@
     };
 
     function ballReset() {
+      if (
+        playerRightScore >= WINNING_SCORE ||
+        playerLeftScore >= WINNING_SCORE
+      ) {
+        playerLeftScore = 0;
+        playerRightScore = 0;
+        ballSpeedY = 0;
+      }
       ballSpeedX = -ballSpeedX;
       // center the ball
       ballX = canvas.width / 2;
@@ -87,8 +96,8 @@
           ballSpeedY = betaY * 0.35;
           console.log({ betaY, ballSpeedY });
         } else {
+          playerLeftScore++; // must be BEFORE ballReset()
           ballReset();
-          playerLeftScore++;
         }
       }
       // Left Paddle
@@ -101,8 +110,8 @@
           ballSpeedY = deltaY * 0.35;
           console.log({ deltaY, ballSpeedY });
         } else {
+          playerRightScore++; // must be BEFORE ballReset()
           ballReset();
-          playerRightScore++;
         }
       }
 
