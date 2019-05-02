@@ -8,6 +8,9 @@
     var ballSpeedX = 15;
     var ballSpeedY = 5;
 
+    let playerRightScore = 0;
+    let playerLeftScore = 0;
+
     var paddleLeftY = 250;
     var paddleRightY = 100;
     // grosor del palito
@@ -80,6 +83,7 @@
           ballSpeedX = -ballSpeedX;
         } else {
           ballReset();
+          playerLeftScore++;
         }
       }
       if (ballX < 0) {
@@ -87,6 +91,7 @@
           ballSpeedX = -ballSpeedX;
         } else {
           ballReset();
+          playerRightScore++;
         }
       }
 
@@ -129,7 +134,8 @@
       // draw circle
       circle(ballX, ballY, 10, "white");
       // Score text
-      canvasContext.fillText("Text stuff", 100, 100);
+      canvasContext.fillText(playerLeftScore, 100, 100);
+      canvasContext.fillText(playerRightScore, canvas.width - 100, 100);
     }
   </script>
 </html>
