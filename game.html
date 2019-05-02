@@ -11,6 +11,7 @@
     let playerRightScore = 0;
     let playerLeftScore = 0;
 
+    // This referes to the top pf the paddle
     var paddleLeftY = 250;
     var paddleRightY = 100;
     // grosor del palito
@@ -23,8 +24,6 @@
       // This get the black rectangle area
       var rect = canvas.getBoundingClientRect();
       var root = document.documentElement;
-      console.log({ root });
-
       // the lines below return the muose position, in x and y axis.
       var mouseX = evt.clientX - rect.left - root.scrollLeft;
       var mouseY = evt.clientY - rect.top - root.scrollTop;
@@ -78,17 +77,29 @@
     function moveEveryThing() {
       ballX = ballX + ballSpeedX;
       computerMovement();
+      // Right Paddle
       if (ballX > canvas.width) {
         if (ballY > paddleRightY && ballY < paddleRightY + PADDLE_HEIGHT) {
           ballSpeedX = -ballSpeedX;
+          // get the center ball position in the paddle
+          let betaY = ballY - (paddleRightY + PADDLE_HEIGHT / 2);
+          //this increments the speed in relation of the center of the paddle
+          ballSpeedY = betaY * 0.35;
+          console.log({ betaY, ballSpeedY });
         } else {
           ballReset();
           playerLeftScore++;
         }
       }
+      // Left Paddle
       if (ballX < 0) {
         if (ballY > paddleLeftY && ballY < paddleLeftY + PADDLE_HEIGHT) {
           ballSpeedX = -ballSpeedX;
+          // get the center ball position in the paddle
+          let deltaY = ballY - (paddleLeftY + PADDLE_HEIGHT / 2);
+          //this increments the speed in relation of the center of the paddle
+          ballSpeedY = deltaY * 0.35;
+          console.log({ deltaY, ballSpeedY });
         } else {
           ballReset();
           playerRightScore++;
