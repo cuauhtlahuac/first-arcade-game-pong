@@ -44,7 +44,8 @@
         if (mousePos.x < canvas.width / 2) {
           paddleLeftY = mousePos.y - PADDLE_HEIGHT / 2;
         } else if (mousePos.x > canvas.width / 2)
-          paddleRightY = mousePos.y - PADDLE_HEIGHT / 2;
+          // paddleRightY = mousePos.y - PADDLE_HEIGHT / 2;
+          console.log("rigth Side")
       });
     };
 
@@ -60,8 +61,17 @@
       drawEveryThing();
     }
 
+    function computerMovement() {
+       if (paddleRightY < ballY) {
+        paddleRightY += 6;
+      } else {
+        paddleRightY -= 6;
+      }
+    }
+
     function moveEveryThing() {
       ballX = ballX + ballSpeedX;
+      computerMovement();
       if (ballX > canvas.width) {
         if (ballY > paddleRightY && ballY < paddleRightY + PADDLE_HEIGHT) {
           ballSpeedX = -ballSpeedX;
@@ -106,7 +116,13 @@
       // here gonna use the new mouse event paddle pos
       rectangle(0, paddleLeftY, PADDLE_THICKNESS, PADDLE_HEIGHT, "white");
       // Right Paddle
-      rectangle(canvas.width - PADDLE_THICKNESS, paddleRightY, PADDLE_THICKNESS, PADDLE_HEIGHT, "white");
+      rectangle(
+        canvas.width - PADDLE_THICKNESS,
+        paddleRightY,
+        PADDLE_THICKNESS,
+        PADDLE_HEIGHT,
+        "white"
+      );
       // draw circle
       circle(ballX, ballY, 10, "white");
     }
