@@ -10,7 +10,9 @@
 
     let playerRightScore = 0;
     let playerLeftScore = 0;
-    const WINNING_SCORE = 3;
+    const WINNING_SCORE = 1;
+
+    let showingWingScreen = false;
 
     // This referes to the top pf the paddle
     var paddleLeftY = 250;
@@ -59,6 +61,7 @@
       ) {
         playerLeftScore = 0;
         playerRightScore = 0;
+        showingWingScreen = true;
         ballSpeedY = 0;
       }
       ballSpeedX = -ballSpeedX;
@@ -138,6 +141,16 @@
     function drawEveryThing() {
       // next line blanks out the screen with black
       rectangle(0, 0, canvas.width, canvas.height, "black");
+      // When some Winning
+      if (showingWingScreen) {
+        canvasContext.fillStyle = "white";
+        canvasContext.fillText(
+          "Winning\nClick to continue",
+          canvas.width / 2,
+          canvas.height / 2
+        );
+        return;
+      }
       // this is left draws red square
       rectangle(ballX, 20, 10, 10, "red");
       // this is left player paddle
