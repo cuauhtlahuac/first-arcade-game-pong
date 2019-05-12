@@ -52,15 +52,22 @@
           // paddleRightY = mousePos.y - PADDLE_HEIGHT / 2;
           console.log("rigth Side");
       });
+      canvas.addEventListener("mousedown", handleMouseClick);
     };
+    
+    function handleMouseClick(evt) {
+      if (showingWinScreen) {
+        playerLeftScore = 0;
+        playerRightScore = 0;
+        showingWinScreen = false;
+      }
+    }
 
     function ballReset() {
       if (
         playerRightScore >= WINNING_SCORE ||
         playerLeftScore >= WINNING_SCORE
       ) {
-        playerLeftScore = 0;
-        playerRightScore = 0;
         showingWinScreen = true;
         ballSpeedY = 0;
       }
