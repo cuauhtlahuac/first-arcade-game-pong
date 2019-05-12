@@ -10,9 +10,12 @@
 
     let playerRightScore = 0;
     let playerLeftScore = 0;
-    const WINNING_SCORE = 1;
+    const WINNING_SCORE = 3;
 
     let showingWinScreen = false;
+
+    let stopGame = false;
+    let playerLeftName = "Left Player";
 
     // This referes to the top pf the paddle
     var paddleLeftY = 250;
@@ -37,11 +40,17 @@
     }
 
     window.onload = function() {
+      playerLeftName = prompt("Left player name");
+      if (playerLeftName === "") {
+        playerLeftName = "mystery player";
+      }
       canvas = document.getElementById("gameCanvas");
       canvasContext = canvas.getContext("2d");
       framesPerSecond = 40;
       setInterval(() => {
-        callBoth();
+        if (!stopGame) {
+          callBoth();
+        }
       }, 1000 / framesPerSecond);
 
       canvas.addEventListener("mousemove", evt => {
@@ -54,15 +63,20 @@
       });
       canvas.addEventListener("mousedown", handleMouseClick);
     };
-    
+
     function handleMouseClick(evt) {
       if (showingWinScreen) {
         playerLeftScore = 0;
         playerRightScore = 0;
         showingWinScreen = false;
+        stopGame = false;
       }
     }
-
+    function gameReset() {
+      stopGame = true;
+      ballX = canvas.width / 2;
+      ballY = canvas.height / 2;
+    }
     function ballReset() {
       if (
         playerRightScore >= WINNING_SCORE ||
@@ -150,11 +164,34 @@
       rectangle(0, 0, canvas.width, canvas.height, "black");
       // When some Winning
       if (showingWinScreen) {
+        const wordsPosition = 350;
+        gameReset();
         canvasContext.fillStyle = "white";
+        if (playerLeftScore >= WINNING_SCORE) {
+          canvasContext.fillText(
+            `${playerLeftName} Won!`,
+            wordsPosition,
+            canvas.height / 2
+          );
+        }
+        if (playerRightScore >= WINNING_SCORE) {
+          canvasContext.fillText(
+            "Computer Won!",
+            wordsPosition,
+            canvas.height / 2
+          );
+        }
         canvasContext.fillText(
-          "Winning\nClick to continue",
-          canvas.width / 2,
-          canvas.height / 2
+          `${playerLeftName}: ${playerLeftScore}
+           Computer: ${playerRightScore}
+          `,
+          wordsPosition,
+          100
+        );
+        canvasContext.fillText(
+          "click to continue",
+          wordsPosition,
+          canvas.height - 100
         );
         return;
       }
